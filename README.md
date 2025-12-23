@@ -1,4 +1,4 @@
-# RAG Search Engine
+# RAG Search Engine "datatalk"
 
 ##  التقنيات المستخدمة
 - **LangChain**: إطار عمل لبناء تطبيقات LLM
@@ -17,6 +17,19 @@ rag-search-engine/
 ├── app.py # التطبيق الرئيسي
 └── requirements.txt # المكتبات
 
+
+## How DataTalk understands the data
+DataTalk uses a Retrieval-Augmented Generation (RAG) approach.
+
+1. Each row from the Excel files is converted into a short text description.
+2. These texts are turned into numerical vectors using a multilingual embeddings model from Hugging Face.
+3. All vectors are stored in a vector database (Chroma).
+4. When the user asks a question, the question is also converted into a vector.
+5. The system finds the most similar vectors (closest meanings) and returns the most relevant rows.
+
+This allows the app to search by meaning (semantics), not only by exact keywords.
+
+
 ##  ما تم إنجازه حتى الآن
 - [x] إعداد البيئة البرمجية
 - [x] قراءة ملفات Excel
@@ -24,3 +37,14 @@ rag-search-engine/
 - [ ] فهرسة البيانات في ChromaDB
 - [ ] بناء Agent للبحث الذكي
 - [ ] واجهة Streamlit تفاعلية
+
+إنشاء بيئة افتراضية
+python -m venv venv
+venv\Scripts\activate
+
+تثبيت المكتبات
+pip install -r requirements.txt
+
+اختبار معالج المستندات
+python src/document_processor.py
+
